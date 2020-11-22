@@ -1,0 +1,10 @@
+CACHE MANIFEST
+
+CACHE:
+/arcadia-webrtc/bluebird.min.js
+/arcadia-webrtc/pxtsim.js
+/arcadia-webrtc/sim.js
+/arcadia-webrtc/sim.css
+
+NETWORK:
+*

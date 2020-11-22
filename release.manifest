@@ -1,0 +1,69 @@
+CACHE MANIFEST
+
+CACHE:
+/arcadia-webrtc/semantic.js
+/arcadia-webrtc/main.js
+/arcadia-webrtc/pxtapp.js
+/arcadia-webrtc/typescript.js
+/arcadia-webrtc/marked/marked.min.js
+/arcadia-webrtc/highlight.js/highlight.pack.js
+/arcadia-webrtc/jquery.js
+/arcadia-webrtc/pxtlib.js
+/arcadia-webrtc/pxtcompiler.js
+/arcadia-webrtc/pxtpy.js
+/arcadia-webrtc/pxtblockly.js
+/arcadia-webrtc/pxtwinrt.js
+/arcadia-webrtc/pxteditor.js
+/arcadia-webrtc/pxtsim.js
+/arcadia-webrtc/pxtembed.js
+/arcadia-webrtc/pxtworker.js
+/arcadia-webrtc/pxtweb.js
+/arcadia-webrtc/blockly.css
+/arcadia-webrtc/semantic.css
+/arcadia-webrtc/rtlsemantic.css
+
+
+
+
+
+# blockly
+/arcadia-webrtc/blockly/media/sprites.png
+/arcadia-webrtc/blockly/media/click.mp3
+/arcadia-webrtc/blockly/media/disconnect.wav
+/arcadia-webrtc/blockly/media/delete.mp3
+
+# monaco; keep in sync with webapp/public/index.html
+/arcadia-webrtc/vs/loader.js
+/arcadia-webrtc/vs/base/worker/workerMain.js
+/arcadia-webrtc/vs/basic-languages/bat/bat.js
+/arcadia-webrtc/vs/basic-languages/cpp/cpp.js
+/arcadia-webrtc/vs/basic-languages/python/python.js
+/arcadia-webrtc/vs/basic-languages/markdown/markdown.js
+/arcadia-webrtc/vs/editor/editor.main.css
+/arcadia-webrtc/vs/editor/editor.main.js
+/arcadia-webrtc/vs/editor/editor.main.nls.js
+/arcadia-webrtc/vs/language/json/jsonMode.js
+/arcadia-webrtc/vs/language/json/jsonWorker.js
+
+# charts
+/arcadia-webrtc/smoothie/smoothie_compressed.js
+/arcadia-webrtc/images/Bars_black.gif
+
+# gifjs
+/arcadia-webrtc/gifjs/gif.js
+
+# ai
+/arcadia-webrtc/ai.0.js
+
+/arcadia-webrtc/worker.js
+/arcadia-webrtc/monacoworker.js
+
+# ver Sun Nov 22 2020 15:19:44 GMT-0700 (Mountain Standard Time)
+
+# target
+/arcadia-webrtc/docs/static/hero.png
+
+/arcadia-webrtc/target.js
+
+NETWORK:
+*

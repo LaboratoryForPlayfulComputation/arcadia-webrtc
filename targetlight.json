@@ -1,0 +1,74 @@
+{
+    "id": "arcadia",
+    "name": "ARcadia",
+    "title": "ARcadia",
+    "corepkg": "core",
+    "cloud": {
+        "workspace": false,
+        "packages": true
+    },
+    "runtime": {
+        "mathBlocks": true,
+        "loopsBlocks": true,
+        "logicBlocks": true,
+        "variablesBlocks": true,
+        "textBlocks": true,
+        "functionBlocks": true,
+        "listsBlocks": true
+    },
+    "simulator": {
+        "autoRun": true
+    },
+    "versions": {
+        "target": "2.0.5",
+        "pxt": "6.2.23"
+    },
+    "blocksprj": {
+        "id": "blocksprj",
+        "config": {
+            "name": "{0}",
+            "dependencies": {
+                "core": "*"
+            },
+            "description": "",
+            "files": [
+                "main.blocks",
+                "main.ts",
+                "README.md"
+            ],
+            "additionalFilePaths": []
+        },
+        "files": {
+            "README.md": " ",
+            "main.blocks": "<xml xmlns=\"http://www.w3.org/1999/xhtml\">\n</xml>",
+            "main.ts": " "
+        }
+    },
+    "tsprj": {
+        "id": "tsprj",
+        "config": {
+            "name": "{0}",
+            "dependencies": {
+                "core": "*"
+            },
+            "description": "",
+            "files": [
+                "main.ts",
+                "README.md"
+            ],
+            "additionalFilePaths": []
+        },
+        "files": {
+            "README.md": " ",
+            "main.ts": " "
+        }
+    },
+    "compile": {
+        "isNative": false,
+        "hasHex": false,
+        "switches": {},
+        "jsRefCounting": false,
+        "noSourceInFlash": true,
+        "utf8": true
+    }
+}

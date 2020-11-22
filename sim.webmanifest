@@ -1,0 +1,12 @@
+{
+    "lang": "en",
+    "dir": "ltr",
+    "name": "ARcadia",
+    "short_name": "ARcadia",
+    "background_color": "#FAFAFA",
+    "icons": [],
+    "scope": "/",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "landscape"
+}
