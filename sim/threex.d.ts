@@ -21,7 +21,8 @@ declare namespace THREEx {
     interface ArToolkitContextOptions {
 		cameraParametersUrl: String;
 		detectionMode: String;
-		matrixCodeType: String;        
+        matrixCodeType: String;
+        labelingMode: String;        
     }
     class ArToolkitContext {
         constructor(options: ArToolkitContextOptions);

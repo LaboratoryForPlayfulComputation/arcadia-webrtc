@@ -25,8 +25,10 @@ namespace pxsim.threex {
             });   
             let arToolkitContext = new THREEx.ArToolkitContext({
                 cameraParametersUrl: board().baseURL + 'AR.js/data/data/camera_para.dat',
+                /*cameraParametersUrl: 'https://github.com/jeromeetienne/AR.js/blob/master/data/data/camera_para.dat',*/
                 detectionMode: 'mono_and_matrix',
-                matrixCodeType: '3x3'
+                matrixCodeType: '3x3',
+                labelingMode: 'black_region'
             });
 
             let self = board();
