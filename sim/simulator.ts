@@ -4,6 +4,7 @@
 /// <reference path="threex.d.ts" />
 /// <reference path="aframe.d.ts" />
 /// <reference path="three-vreffect.d.ts" />
+/// <reference path="tone.d.ts" />
 
 namespace pxsim {
 
@@ -40,6 +41,15 @@ namespace pxsim {
         public vrEffect         : boolean;
         public baseURL          : string;
         public onRenderFcts     : Array<any>;
+        public instruments      : Array<Tone.Instrument>;
+        public fx               : pxsim.Map<Tone.Effect>;
+        public monosynth        : Tone.MonoSynth;
+        public polysynth        : Tone.PolySynth;
+        public drumPlayers      : pxsim.Map<Tone.Player>;
+        public phrases          : pxsim.Map<pxsim.phrases.Phrase>;
+        public drumMachine      : Tone.MultiPlayer;
+        public drumSamples      : Tone.Buffers;
+        public oscillators      : pxsim.Map<Tone.Oscillator>;
         
         constructor() {
             super();
@@ -61,7 +71,27 @@ namespace pxsim {
             this.scene            = three.createScene();
             this.scene.add(this.camera);      
             this.scene.add(three.createDirectionalLight());
-            this.scene.add(three.createAmbientLight());                  
+            this.scene.add(three.createAmbientLight());    
+            
+            /* music */
+            this.phrases     = {};
+            this.instruments = [];
+            this.fx          = {"distortion": tone.createEffect(Effect.Distortion), 
+                                    "delay": tone.createEffect(Effect.Delay),
+                                        "chorus": tone.createEffect(Effect.Chorus),
+                                            "reverb": tone.createEffect(Effect.Reverb),
+                                                "phaser": tone.createEffect(Effect.Phaser)};            
+            this.monosynth   = tone.createMonoSynth().toMaster();  // for play tone blocks
+            this.polysynth   = tone.createPolySynth(5).toMaster(); // for play chord blocks
+            this.instruments.push(this.monosynth);
+            this.instruments.push(this.polysynth);
+            this.oscillators = {"sine": tone.createOsc(Wave.Sine, 440),
+                                "square": tone.createOsc(Wave.Square, 440),
+                                "triangle": tone.createOsc(Wave.Triangle, 440),
+                                "sawtooth": tone.createOsc(Wave.Sawtooth, 440)};
+            tone.bpm(120);
+            tone.startTransport(0);    
+            music.setVolume(100);     
         }
         
         initAsync(msg: pxsim.SimulatorRunMessage): Promise<void> {
@@ -73,7 +103,19 @@ namespace pxsim {
             this.initRenderFunctions(); 
             this.runRenderingLoop();   
                        
-            return Promise.resolve();  
+            /*return Promise.resolve();  */
+
+            return tone.loadDrumSamplesAsync(this.baseURL)
+            .then(drumSamples => {
+                this.drumSamples = drumSamples;
+                this.drumPlayers = {"kick" : new Tone.Player(this.drumSamples.get("kick")).toMaster(), // for one-off drum hits
+                                    "snare": new Tone.Player(this.drumSamples.get("snare")).toMaster(),
+                                    "hihat": new Tone.Player(this.drumSamples.get("hihat")).toMaster(),
+                                    "click": new Tone.Player(this.drumSamples.get("click")).toMaster(),
+                                    "splat": new Tone.Player(this.drumSamples.get("splat")).toMaster()};
+                this.drumMachine = tone.createDrumMachine().toMaster(); // for building drum sequences
+                return Promise.resolve();                            
+            });
         }       
 
         /**
@@ -133,7 +175,14 @@ namespace pxsim {
 
         kill() {
             design.removeAllFilters();
+            Tone.Master.volume.value = -Infinity;
+
             if (this.scene)       three.removeSceneChildren(this.scene);
+            if (this.fx)          tone.killFX();
+            if (this.phrases)     tone.killPhrases();
+            if (this.instruments) tone.killInstruments();
+            if (this.oscillators) tone.killOscillators();
+            tone.stopTransport();
             this.onRenderFcts = [];
             this.markers = {};
         }
@@ -149,6 +198,14 @@ namespace pxsim {
                 m = this.markers[marker.toString()] = new pxsim.markers.Marker(marker, this.markerColors[marker]);
             return m;
         }
+
+                /**
+         * Gets a phrase
+         * @param name 
+         */
+        phrase(name: string): pxsim.phrases.Phrase {
+            return this.phrases[name];
+        } 
 
     }
 
